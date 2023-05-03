@@ -37,8 +37,9 @@ function get_other(speaker) {
 function set_translation(text, speaker) {
   const other = get_other(speaker);
   textarea = document.getElementById(`outputText${other}`);
-  textarea.value += `SPEAKER ${speaker}:\n${text}\n\n`;
+  textarea.value += `SPEAKER ${speaker}:\n${text}`;
   textarea.scrollTop = textarea.scrollHeight;
+  textarea.value += '\n\n';
 }
 
 function set_text(text, speaker) {
