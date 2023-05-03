@@ -47,7 +47,7 @@ class OpenAI {
 
   translate(pair, text) {
     if (!LanguagePairs.hasOwnProperty(pair)) {
-      return Promise.reject(new Error (`The provided "${pair}" is not a valid language pair`));
+      return Promise.reject(new Error (`The provided "${pair}" is not a valid translation pair.`));
     }
 
     const data = {

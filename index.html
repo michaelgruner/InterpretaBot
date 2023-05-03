@@ -14,84 +14,157 @@
 
 <body>
   <div class="container mt-5">
+    <!-- HEADER -->
     <div class="jumbotron bg-primary">
       <div class="container">
         <h1 class="text-center mb-5 text-white">InterpretaBot</h1>
       </div>
     </div>
+
+    <!-- API CONFIGURATION -->
     <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="languagePair">Language Pair:</label>
-        <select id="languagePair" class="form-control">
-          <option value="en-es">English to Spanish</option>
-          <option value="es-en">Spanish to English</option>
-        </select>
-      </div>
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-12">
         <label for="apiKey">OpenAI API Key:</label>
         <input type="password" id="apiKey" class="form-control" placeholder="Enter your OpenAI API key...">
       </div>
     </div>
-    <div class="form-group">
 
-      <div class="position-relative">
-        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-          <div id="inputSpinner" class="spinner-border d-none" role="status">
-            <span class="sr-only">Loading...</span>
+    <!-- TRANSLATION -->
+    <div class="row">
+
+      <!-- SPEAKER 1 -->
+      <div class="col-md-6">
+        <h2>Speaker 1</h2>
+        <div class="form-group">
+          <label for="language1">Language:</label>
+          <select id="language1" class="form-control">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="inputText1">Input Text:</label>
+
+          <div class="position-relative">
+            <div id="inputSpinner1"
+              class="spinner d-none justify-content-center align-items-center position-absolute w-100 h-100">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="recordButton1"><i id="micIcon1"
+                    class="fas fa-microphone"></i></button>
+              </div>
+
+              <textarea id="inputText1" rows="5" class="form-control"></textarea>
+            </div>
           </div>
         </div>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <button class="btn btn-outline-secondary" type="button" id="recordButton"><i id="micIcon"
-                class="fas fa-microphone"></i></button>
+        <div class="form-group">
+          <label for="outputText1">Output Text:</label>
+          <div class="position-relative">
+            <div class="spinner d-none justify-content-center align-items-center position-absolute w-100 h-100">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="copyButton1">
+                  <i class="fas fa-copy"></i></button>
+              </div>
+              <textarea id="outputText1" rows="5" class="form-control" readonly></textarea>
+            </div>
           </div>
-          <textarea id="inputText" rows="5" class="form-control"></textarea>
+        </div>
+      </div>
+
+      <!-- SPEAKER 2 -->
+      <div class="col-md-6">
+        <h2>Speaker 2</h2>
+        <div class="form-group">
+          <label for="language2">Language:</label>
+          <select id="language2" class="form-control">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="inputText2">Input Text:</label>
+          <div class="position-relative">
+            <div id="inputSpinner2"
+              class="spinner d-none justify-content-center align-items-center position-absolute w-100 h-100">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+            <div class="input-group">
+              <textarea id="inputText2" rows="5" class="form-control"></textarea>
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="recordButton2"><i id="micIcon2"
+                    class="fas fa-microphone"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="outputText2">Output Text:</label>
+          <div class="position-relative">
+            <div class="spinner d-none justify-content-center align-items-center position-absolute w-100 h-100">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+            <div class="input-group">
+              <textarea id="outputText2" rows="5" class="form-control" readonly></textarea>
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="copyButton2">
+                  <i class="fas fa-copy"></i></button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="outputText">Interpreted Text:</label>
-      <div class="position-relative">
-        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
-          <div id="outputSpinner" class="spinner-border d-none" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
-        <textarea id="outputText" rows="5" class="form-control" readonly></textarea>
-      </div>
-    </div>
-    <button id="interpretBtn" class="btn btn-primary" onclick="interpret()">
-      Interpret
+    
+    <!-- CLEAR -->
+    <button class="btn btn-danger mt-2" onclick="clear_output()">
+      <i class="fas fa-trash"></i> Clear
     </button>
-  </div>
-
-  <!-- Footer section -->
-  <footer class="bg-dark text-white py-3 mt-5">
-    <div class="container text-center">
-      <p>&copy; 2023 Michael Grüner. All rights reserved.</p>
-      <p>
-        Contact us at:
-        <a href="mailto:me@mgruner.io">me@mgruner.io</a>
-        <a href="https://twitter.com/grunermonzon" target="_blank" class="mx-3"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.linkedin.com/in/michael-gruner" target="_blank" class="mx-3"><i
-            class="fab fa-linkedin"></i></a>
-      </p>
+    
+    <!-- COPY -->
+    <div id="copyNotification" class="alert alert-success d-none" role="alert">
+      Text has been copied to clipboard.
     </div>
-  </footer>
 
-  <!-- Load Bootstrap JS and jQuery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <!-- Load Font Awesome Icons JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-  <!-- Replit badge -->
-  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"> </script>
-  <!-- Our logic -->
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white py-3 mt-5">
+      <div class="container text-center">
+        <p>&copy; 2023 Michael Grüner. All rights reserved.</p>
+        <p>
+          Contact us at:
+          <a href="mailto:me@mgruner.io">me@mgruner.io</a>
+          <a href="https://twitter.com/grunermonzon" target="_blank" class="mx-3"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/michael-gruner" target="_blank" class="mx-3"><i
+              class="fab fa-linkedin"></i></a>
+        </p>
+      </div>
+    </footer>
 
-  <script src="src/recorder.js"></script>
-  <script src="src/openai.js"></script>
-  <script src="src/script.js"></script>
+    <!-- Load Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Load Font Awesome Icons JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <!-- Replit badge -->
+    <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"> </script>
+    <!-- Our logic -->
+    <script src="src/recorder.js"></script>
+    <script src="src/openai.js"></script>
+    <script src="src/script.js"></script>
 </body>
 
 </html>
