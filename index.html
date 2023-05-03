@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>InterpretaBot</title>
+  <!-- Load Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Load Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="jumbotron bg-primary">
+      <div class="container">
+        <h1 class="text-center mb-5 text-white">InterpretaBot</h1>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="languagePair">Language Pair:</label>
+        <select id="languagePair" class="form-control">
+          <option value="en-es">English to Spanish</option>
+          <option value="es-en">Spanish to English</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="apiKey">OpenAI API Key:</label>
+        <input type="password" id="apiKey" class="form-control" placeholder="Enter your OpenAI API key...">
+      </div>
+    </div>
+    <div class="form-group">
+
+      <div class="position-relative">
+        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+          <div id="inputSpinner" class="spinner-border d-none" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="button" id="recordButton"><i id="micIcon"
+                class="fas fa-microphone"></i></button>
+          </div>
+          <textarea id="inputText" rows="5" class="form-control"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="outputText">Interpreted Text:</label>
+      <div class="position-relative">
+        <div class="d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+          <div id="outputSpinner" class="spinner-border d-none" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <textarea id="outputText" rows="5" class="form-control" readonly></textarea>
+      </div>
+    </div>
+    <button id="interpretBtn" class="btn btn-primary" onclick="interpret()">
+      Interpret
+    </button>
+  </div>
+
+  <!-- Footer section -->
+  <footer class="bg-dark text-white py-3 mt-5">
+    <div class="container text-center">
+      <p>&copy; 2023 Michael Grüner. All rights reserved.</p>
+      <p>
+        Contact us at:
+        <a href="mailto:me@mgruner.io">me@mgruner.io</a>
+        <a href="https://twitter.com/grunermonzon" target="_blank" class="mx-3"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/michael-gruner" target="_blank" class="mx-3"><i
+            class="fab fa-linkedin"></i></a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Load Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Load Font Awesome Icons JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+  <!-- Replit badge -->
+  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"> </script>
+  <!-- Our logic -->
+
+  <script src="recorder.js"></script>
+  <script src="openai.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
