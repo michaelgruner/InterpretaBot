@@ -34,10 +34,12 @@ function get_other(speaker) {
   return speaker == 2 ? 1 : 2;
 }
 
-function set_translation(text, speaker) {
-  const other = get_other(speaker);
+function set_translation(text, speaker, label=0) {
+  label = label == 0 ? speaker : label;
+  other = get_other(speaker);
   textarea = document.getElementById(`outputText${other}`);
-  textarea.value += `SPEAKER ${speaker}:\n${text}`;
+  var currentDate = new Date();
+  textarea.value += `[${currentDate.toString()}]\nSpeaker ${label} - ${text}`;
   textarea.scrollTop = textarea.scrollHeight;
   textarea.value += '\n\n';
 }
@@ -48,7 +50,7 @@ function set_text(text, speaker) {
   inputText.value = text;
 
   const other = get_other(speaker);
-  set_translation(text, other);
+  set_translation(text, other, speaker);
 }
 
 function set_recording_start(speaker) {
